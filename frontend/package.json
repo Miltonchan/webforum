@@ -20,6 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://mern-web-forum-frontend.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
