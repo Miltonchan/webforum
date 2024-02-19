@@ -27,6 +27,8 @@ app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 })
+const path = require("path");
+app.use(express.static(path.join(__dirname, "build"))); // put this line of code in app.js
 
 // routes
 app.use('/useraccount',useraccountRouter);
