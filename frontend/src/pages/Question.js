@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { URL } from "../App";
 
 // import context
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -29,7 +30,7 @@ const Question = () => {
 
     // GET the username
     const fetchUsername = async () => {
-      const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`,{
+      const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`,{
         method:"GET",
       })
       const data = await response.json();
@@ -41,7 +42,7 @@ const Question = () => {
 
     // Get the corresponding question information
     const fetchQuestion = async () => {
-        const response = await fetch(`http://localhost:4000/question/${id}`,{
+        const response = await fetch(`${URL}/question/${id}`,{
           method:'GET',
         });
         const questiondata = await response.json();
@@ -53,7 +54,7 @@ const Question = () => {
 
     // Fetch the replies of the corresponding quesiton
     const fetchReply = async () => {
-      const response = await fetch(`http://localhost:4000/reply/${id}`, {
+      const response = await fetch(`${URL}/reply/${id}`, {
         method: "GET",
       });
       const data = await response.json();
@@ -63,7 +64,7 @@ const Question = () => {
         setReplyNum(data.length);  //delele
 
         // Fetch the replies' id that has been liked by user
-        const likedResponse = await fetch(`http://localhost:4000/reply/liked/${id}?username=${username}`, {
+        const likedResponse = await fetch(`${URL}/reply/liked/${id}?username=${username}`, {
           method: 'GET',
         });
         const likedData = await likedResponse.json();
@@ -112,7 +113,7 @@ const Question = () => {
     
     // Save the reply message to replymodel in db
     try {
-      fetch('http://localhost:4000/reply/newreply',{
+      fetch(`${URL}/reply/newreply`,{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(replyData)
@@ -126,7 +127,7 @@ const Question = () => {
         const repliesId = data._id; 
         console.log(repliesId);
         try { 
-          fetch(`http://localhost:4000/question/addReplyId/${id}`, {
+          fetch(`${URL}/question/addReplyId/${id}`, {
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({repliesId})
@@ -159,7 +160,7 @@ const Question = () => {
 
         // Update the score and numOfRepliesSent
         try {
-          fetch('http://localhost:4000/useraccount/updateScoreAndRepliesSent',{
+          fetch(`${URL}/useraccount/updateScoreAndRepliesSent`,{
             method:'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(usernameForScore)
@@ -188,7 +189,7 @@ const Question = () => {
       const replyusernameForScore = { replyUserName };
 
       // Update a reply when like clicked
-      const response = await fetch(`http://localhost:4000/reply/like/${replyId}`, {
+      const response = await fetch(`${URL}/reply/like/${replyId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username }),
@@ -207,7 +208,7 @@ const Question = () => {
       }
 
       // Update the score and numOfLikesGave
-      fetch('http://localhost:4000/useraccount/updateScoreAndLikesGave',{
+      fetch(`${URL}:4000/useraccount/updateScoreAndLikesGave`,{
         method:'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(usernameForScore)
@@ -218,7 +219,7 @@ const Question = () => {
       })
 
       // Update the score and numOfLikesReceied
-      fetch('http://localhost:4000/useraccount/updateScoreAndLikesReceived',{
+      fetch(`${URL}/useraccount/updateScoreAndLikesReceived`,{
         method:'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(replyusernameForScore)

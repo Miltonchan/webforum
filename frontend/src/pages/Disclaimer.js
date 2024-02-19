@@ -6,7 +6,7 @@ const Disclaimer = () => {
 
   // Click return and go back to the previous page
   const handleReturn = () => {
-    navigate('/login');
+    navigate(`${URL}/login`);
   };
 
 	return (

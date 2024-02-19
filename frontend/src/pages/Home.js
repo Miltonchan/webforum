@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { URL } from "../App";
 
 // import components
 import AllQuestionList from "../components/AllQuestionList";
@@ -27,7 +28,7 @@ const Home = () => {
 
     // Get all the user information from students and sort them based on the score
     const fetchAllUserInformation = useCallback(async () => {
-      const response = await fetch('http://localhost:4000/useraccount/getAllUserInformation',
+      const response = await fetch(`${URL}/useraccount/getAllUserInformation`,
       {
         method: 'GET',
       });
@@ -65,7 +66,7 @@ const Home = () => {
   useEffect(() => {
     // GET all the questions
     const fetchQuestions = async () => {
-      const response = await fetch("http://localhost:4000/question", {
+      const response = await fetch(`${URL}/question`, {
         method: "GET",
       });
       const data = await response.json();
@@ -78,7 +79,7 @@ const Home = () => {
     // GET the username
     const fetchUsername = async () =>{
       const email = state.email;
-      const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`,{
+      const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`,{
         method:"GET",
       })
       const data = await response.json();

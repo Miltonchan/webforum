@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { URL } from "../App";
 
 // import context
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -16,7 +17,7 @@ const Leaderboard = () => {
 
   // GET the username
   const fetchUsername = useCallback(async () => {
-    const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`,
+    const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`,
       {
         method: 'GET',
       }
@@ -30,7 +31,7 @@ const Leaderboard = () => {
 
   // Get all the user information from students and sort them based on the score
   const fetchAllUserInformation = useCallback(async () => {
-    const response = await fetch('http://localhost:4000/useraccount/getAllUserInformation',
+    const response = await fetch(`${URL}/useraccount/getAllUserInformation`,
     {
       method: 'GET',
     });

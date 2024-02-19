@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { URL } from "../App";
 
 const ContactUs= () => {
 
@@ -6,7 +7,7 @@ const ContactUs= () => {
 
   // Click return and go back to the previous page
   const handleReturn = () => {
-    navigate('/login');
+    navigate(`${URL}/login`);
   };
 
 	return (
@@ -40,38 +41,6 @@ const ContactUs= () => {
         </div>
       </div>
     </div>
-		
-		// <div className="container-lg my-3">
-		//   <button className="btn btn-light mb-2 btn-lg"  onClick={handleReturn}>
-    //     <i className="bi bi-arrow-return-left"></i> Return to Login 
-    //   </button>   
-		// 	<div className="row justify-content-center align-items-center">
-    //     <div className="col-md-12 text-center mb-5">
-		// 			 <h2> Contact Us </h2>
-		// 		</div>
-		// 	</div>
-		// 	<div className="row justify-content-center align-items-center">
-		// 		<div className="col-md-6">
-					// <h3>AI Education and Exploration Lab
-					// 		Room 1105, William M.W. Mong Engineering Building (ERB),
-					// 		The Chinese University of Hong Kong, Shatin
-					// </h3>
-					// <h3>
-					// 	3943 0479
-					// </h3>
-					// <h3>	
-					// 	aiforfuture@cuhk.edu.hk
-					// </h3>
-					// <h3>
-					// 	sso-ai.keep.edu.hk/supports/
-					// </h3>
-		// 		</div>
-		// 		<div className="col-md-6">
-
-		// 		</div>
-		// 	</div>
-
-		// </div>
 	)
 }
     

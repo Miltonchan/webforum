@@ -21,6 +21,12 @@ const replyRouter = require('./routes/reply');
 
 // middleware
 app.use(cors());
+// app.use(cors({
+//   origin:[
+//     "https://localhost:3000",
+//     "https://mern-web-forum-frontend.onrender.com",
+//   ]
+// }));
 app.use(express.json())
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -37,12 +43,15 @@ app.use('/question',questionRouter);
 app.use('/reply',replyRouter);
 
 
+const PORT = process.env.PORT || 4000
+
+
 // connect to db
 mongoose.connect(process.env.MONG_URL)
   .then(() => {
     // listen for request
-    app.listen(process.env.PORT, ()=>{
-      console.log('connected to db & listening on port', process.env.PORT);
+    app.listen(PORT, ()=>{
+      console.log(`connected to db & listening on port ${PORT}`);
       // Create Sample Dataset for testing  *uncomment it for the first time
       // generateSampleData();
     })   

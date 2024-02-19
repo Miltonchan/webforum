@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { URL } from "../App";
 
 
 // import context
@@ -26,7 +27,7 @@ const SignupForm = () => {
   // Function to check the duplication of the input useranme
   const checkUsernameAvailability = async (username) => {
     try {
-      const response = await fetch(`http://localhost:4000/useraccount/checkUserName?username=${username}`, {
+      const response = await fetch(`${URL}/useraccount/checkUserName?username=${username}`, {
         method: 'GET',
       });
 
@@ -82,7 +83,7 @@ const SignupForm = () => {
     // Create a new useraccount in db
     const userData = { email: state.email, username: username, role: role, district: district, school: school }
     try{
-      fetch('http://localhost:4000/useraccount/newuser',{
+      fetch(`${URL}/useraccount/newuser`,{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)

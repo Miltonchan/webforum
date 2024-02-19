@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { URL } from "../App";
 
 // import components
 import MyQuestionList from "../components/MyQuestionList";
@@ -19,7 +20,7 @@ const MyQuetionsReplies= () => {
 
   // GET the username
   const fetchUsername = useCallback(async () => {
-    const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`,
+    const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`,
       {
         method: 'GET',
       }
@@ -33,7 +34,7 @@ const MyQuetionsReplies= () => {
 
   // GET all the questions to be filtered by username
   const fetchQuestions = useCallback(async () => {
-    const response = await fetch('http://localhost:4000/question', {
+    const response = await fetch(`${URL}/question`, {
       method: 'GET',
     });
     const data = await response.json();
@@ -44,7 +45,7 @@ const MyQuetionsReplies= () => {
 
   // Get the replies based on the user
   const fetchReplies = useCallback(async () => { 
-    const response = await fetch(`http://localhost:4000/reply/user/${username}`,{
+    const response = await fetch(`${URL}/reply/user/${username}`,{
       method: 'GET',
     });
 

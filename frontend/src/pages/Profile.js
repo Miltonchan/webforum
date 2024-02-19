@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { URL } from "../App";
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Profile = () => {
@@ -10,7 +11,7 @@ const Profile = () => {
   useEffect (() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`,{
+        const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`,{
           method:"GET",
         })
         const data = await response.json();

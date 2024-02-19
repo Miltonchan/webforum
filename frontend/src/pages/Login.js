@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { URL } from "../App";
 
 // import component
 import SignupForm from "../components/SignupForm";
@@ -37,7 +38,7 @@ const Login = () => {
     const email = jwtDecode(sessionStorage.getItem("token")).email;
     const fetchEmail = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/useraccount/getUserInfo?email=${email}`, {
+        const response = await fetch(`${URL}/useraccount/getUserInfo?email=${email}`, {
           method: "GET"
         });
 
@@ -52,6 +53,7 @@ const Login = () => {
             setRedirectToHome(true);
           },"2000");
         } else {
+          console.log("failed")
           setShowSignupForm(true);
         }
       } catch (error) {
